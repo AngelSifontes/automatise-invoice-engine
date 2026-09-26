@@ -6,13 +6,19 @@ CARPETA_PROCESADAS = Path("procesadas")
 
 for archivo in CARPETA_FACTURAS.iterdir():
 
-    print(f"procesando : {archivo.name}") 
-  
-    destino = CARPETA_PROCESADAS / archivo.name
+   if archivo.suffix.lower() != ".pdf":
     
-    shutil.move (archivo, destino)
+       print(f"Ignorado : {archivo.name}")
+       continue
 
-print(f"Procesando : {archivo.name}")
+
+   print(f"Procesando: {archivo.name}") 
+  
+   destino = CARPETA_PROCESADAS / archivo.name
+    
+   shutil.move(archivo, destino)
+
+   print(f"Procesado : {archivo.name}")
 
 
 
